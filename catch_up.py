@@ -29,6 +29,17 @@ class Player(Settings):
             self.rect.x += self.speed
         if keys[pygame.K_LEFT] and self.rect.x>0:
             self.rect.x -= self.speed  
+            
+    def move2(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_w] and self.rect.y>0:
+            self.rect.y -= self.speed
+        if keys[pygame.K_s] and self.rect.y < win_height-self.rect.height:
+            self.rect.y += self.speed
+        if keys[pygame.K_d] and self.rect.x < win_width-self.rect.width:
+            self.rect.x += self.speed
+        if keys[pygame.K_a] and self.rect.x>0:
+            self.rect.x -= self.speed
         
             
     
@@ -36,6 +47,7 @@ class Player(Settings):
 
 back = Settings("background.png", 0,0, win_width, win_height)
 p1 = Player("sprite1.png", 0, win_height//2, 100, 100, 5)
+p2 = Player("sprite2.png", 0, win_height//2, 100, 100, 5)
 game = True
 
 while game:
@@ -46,5 +58,7 @@ while game:
     back.draw()
     p1.move1()
     p1.draw()
+    p2.move2()
+    p2.draw()
     pygame.display.flip()
     FPS.tick(40)
