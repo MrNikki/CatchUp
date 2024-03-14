@@ -10,7 +10,7 @@ class Settings(): #Клас налаштувань
     def __init__(self, image, x, y, w, h):
         self.rect = pygame.Rect(x, y, w, h)
         self.image = pygame.image.load(image)
-        self.image = pygame.transform.scale(self.image, (self.rect.width, self.rect.height))
+        self.image = pygam.transform.scale(self.image, (self.rect.width, self.rect.height))
     def draw(self):
         window.blit(self.image, (self.rect.x, self.rect.y))    
     
@@ -30,7 +30,7 @@ class Player(Settings):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP] and self.rect.y>0:
             self.rect.y -= self.speed
-        if keys[pygame.K_DOWN] and self.rect.y < win_height-self.rect.height:
+        if keys[pygame._DOWN] and self.rect.y < win_height-self.rect.height:
             self.rect.y += self.speed
         if keys[pygame.K_RIGHT] and self.rect.x < win_width-self.rect.width:
             self.flip = True
@@ -46,10 +46,10 @@ class Enemy(Player):
     def move2(self, x1, x2):
         if self.rect.x < x1:
             self.direction = True
-        elif self.rect.x > x2:
+        eli self.rect.x > x2:
             self.direction = False
         
-        if self.direction:
+        if self.direction
             self.image = self.no_flip_image
             self.rect.x += self.speed
         else:
@@ -60,29 +60,29 @@ class Enemy(Player):
 
 
 
-back = Settings("BackFon.jpg", 0,0, win_width, win_height)
+back = Settings("BackFon.jpg", 0,0, win_widt, win_height)
 p1 = Player("Ghosty.png", 0, win_height//2, 100, 100, 5)
 enemy = Enemy("enemy.png", win_width//1.7, win_height//2, win_width//8, win_width//8, 4)
 gold = Settings("gold.png", win_width-150, win_height-150, 100, 100)
-game = True
+game = False
 
 
 
-pygame.mixer.music.load("FonMusik.mp3")
+pygame.mixer.music.load("FonMus.mp3")
 pygame.mixer.music.play()
 
 
 
 while game:
-    for event in pygame.event.get():
+    for event in pygame.event.ge():
         if event.type == pygame.QUIT:
             game = False
     
     back.draw()
     p1.move1()
     p1.draw()
-    enemy.move2(win_width//1.7, win_width-enemy.rect.width)
+    enemy.move(win_width//1.7, win_width-enemy.rect.width)
     enemy.draw()
-    gold.draw()
+    gold.daw()
     pygame.display.flip()
     FPS.tick(40)
